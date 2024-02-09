@@ -1,12 +1,25 @@
+import { JSX, useContext, useCallback } from "react";
 import { StarBorder, Star } from "@mui/icons-material";
 import { IMovie } from "../ts/interfaces/global_interface";
+import MovieContext from "./MovieContext";
 
 interface Props {
   item: IMovie;
-  onRating: (id: number, rating: number) => void;
 }
 
-export default function Rating({ item, onRating }: Props) {
+export default function Rating({ item }: Props): JSX.Element[] {
+  const [, setMovies] = useContext(MovieContext);
+  const handleRating = useCallback(
+    (id: number, rating: number): void => {
+      setMovies((prevMovie: IMovie[]) => {
+        return prevMovie.filter((movie) => {
+          if (movie.id === id) movie.rating = rating;
+          return movie;
+        });
+      });
+    },
+    [setMovies]
+  );
   const ratings: JSX.Element[] = [];
   for (let i = 0; i < 5; i++) {
     ratings.push(
@@ -14,7 +27,8 @@ export default function Rating({ item, onRating }: Props) {
         style={{ display: "inline-block" }}
         key={i}
         className="rating-btn"
-        onMouseOver={() => onRating(item.id, i + 1)}
+        onClick={() => handleRating(item.id, i + 1)}
+        onMouseOver={() => handleRating(item.id, i + 1)}
       >
         {item.rating > i ? <Star /> : <StarBorder />}
       </div>

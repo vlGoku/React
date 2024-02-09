@@ -1,11 +1,14 @@
 import MovieList from "./components/MovieList.container";
+import MoviesProvider from "./components/MoviesProvider";
 
 function App() {
   return (
-    <div>
-      <h1>Movie List</h1>
-      <MovieList />
-    </div>
+    <>
+      <h1 style={{ textAlign: "center" }}>Movie List</h1>
+      <MoviesProvider>
+        <MovieList />
+      </MoviesProvider>
+    </>
   );
 }
 
