@@ -1,14 +1,20 @@
-import MovieList from "./components/MovieList.container";
+import MovieList from "./components/MovieList";
 import MoviesProvider from "./components/MoviesProvider";
+import "./App.css";
+import FormEdit from "./components/FormEdit";
 
 function App() {
   return (
-    <>
-      <h1 style={{ textAlign: "center" }}>Movie List</h1>
-      <MoviesProvider>
-        <MovieList />
-      </MoviesProvider>
-    </>
+    <FormEdit
+      onSave={(movie) => console.log(movie)}
+      editMovie={{
+        id: 9,
+        title: "Best film ever",
+        director: "Best director ever",
+        runtime: 300,
+        rating: 5,
+      }}
+    />
   );
 }
 

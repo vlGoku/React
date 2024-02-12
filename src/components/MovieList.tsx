@@ -1,21 +1,18 @@
 import MovieListItem from "./MovieListItem";
-import "../MovieList.css";
 import { IMovie } from "../ts/interfaces/global_interface";
+import useMovies from "./useMovies";
+import style from "./css/MovieList.module.css";
 
-interface Props {
-  movies: IMovie[];
-  err: Error | null;
-}
-
-export default function MovieList({ movies, err }: Props) {
+export default function MovieList() {
+  const [movies, err] = useMovies();
   {
     if (err !== null) {
-      return <div>{err?.message}</div>;
+      return <div>{(err as Error).message}</div>;
     } else {
       return (
-        <div className="container">
+        <div className={style.moviesContainer}>
           {" "}
-          {movies.map((movie: IMovie): JSX.Element => {
+          {(movies as IMovie[]).map((movie: IMovie): JSX.Element => {
             return <MovieListItem key={movie.id} movie={movie} />;
           })}
         </div>

@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { IMovie } from "../ts/interfaces/global_interface";
-import MovieList from "./MovieList";
 import MovieContext from "./MovieContext";
 
-export default function MovieListContainer() {
+export default function useMovies() {
   const [movies, setMovies] = useContext(MovieContext);
   const [err, setErr] = useState<Error | null>(null);
 
@@ -27,5 +26,5 @@ export default function MovieListContainer() {
     connect();
   }, []);
 
-  return <MovieList movies={movies!} err={err} />;
+  return [movies, err];
 }
