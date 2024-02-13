@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Roboto";
+}
+
 .movies-container .movie-card.five-star {
   background-color: #f2dd18;
 }

@@ -1,14 +1,12 @@
-import { useState, useEffect, useContext } from "react";
-import MovieContext from "./MovieContext";
+import { useState, useEffect } from "react";
+
 import { MovieInput } from "../ts/interfaces/global_interface";
 import { IMovie } from "../ts/interfaces/global_interface";
 
-interface Props {
-  onSave: (movie: MovieInput) => void;
-  editMovie?: IMovie;
-}
-
-export default function useFormEdit({ onSave, editMovie }: Props) {
+export default function useFormEdit(
+  onSave: (movie: MovieInput) => void,
+  editMovie: IMovie
+) {
   const [movie, setMovie] = useState<MovieInput>({
     title: "",
     director: "",
@@ -31,5 +29,5 @@ export default function useFormEdit({ onSave, editMovie }: Props) {
     event.preventDefault();
     onSave(movie);
   };
-  return [{ movie }, { handleChange }, { handleSubmit }];
+  return [movie, handleChange, handleSubmit];
 }
