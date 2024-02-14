@@ -16,6 +16,9 @@ import { error } from "console";
 interface Props {
   onSave: (movie: MovieInput) => void;
   editMovie?: IMovie;
+  open: boolean;
+  onClose: () => void;
+  movie?: MovieInput;
 }
 
 export default function FormEdit({
